@@ -118,16 +118,18 @@
       if (text === null || text === "") {
         alert('ingrese un selector jQuery');
         $('#camposelector').val('');
-      } else if (!(eval(text) instanceof jQuery)) {
-        alert('ingrese un selector jQuery');
-        $('#camposelector').val('');
       } else {
-        eval(text + ".fadeOut('slow','swing', function() {  " + text + ".fadeIn('slow','swing');})");
+        try {
+          eval(text + ".fadeOut('slow','swing', function() {  " + text + ".fadeIn('slow','swing');})");
 
-        $('.historial').append("<h5>"+text+"</h5>");
-        var sel = eval(text + ".length");
-        $('#cuenta').append("<li>"+sel+"</li>");
-        $('#camposelector').val('');
+          $('.historial').append("<h5>"+text+"</h5>");
+          var sel = eval(text + ".length");
+          $('#cuenta').append("<li>"+sel+"</li>");
+          $('#camposelector').val('');
+        } catch(e) {
+          alert('ingresa un selector valido');
+          $('#camposelector').val('');
+        }
       }
     });
 </script>
